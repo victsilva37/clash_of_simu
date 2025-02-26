@@ -1,0 +1,21 @@
+header{
+    background-color: #2C2C2C;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1{
+    color: #FFFFFF;
+}
+
+header nav{
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+}
+
+header nav a{
+    color: #B0B0B0;
+    text-decoration: none;
+}

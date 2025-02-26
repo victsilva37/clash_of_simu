@@ -1,12 +1,23 @@
+
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+
+import { HttpClientModule } from '@angular/common/http';
+import { bootstrapApplication } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [RouterModule,  HttpClientModule],
+  template: `
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  `,
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  title = 'angular-project';
-}
+export class AppComponent {}
+
+bootstrapApplication(AppComponent).catch((err) =>
+  console.error('Error al iniciar la aplicación:', err)
+);

@@ -1,0 +1,18 @@
+#main-container{
+    background-color: #121212;
+    height: 100vh;
+    display: flex;
+}
+
+#main-container label{
+    color:  #FFFFFF;
+}
+
+#input-tag{
+    background-color: #2C2C2C;
+    width: 30%;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+}
+ 

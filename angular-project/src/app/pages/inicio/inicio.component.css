@@ -1,0 +1,120 @@
+/*TÍTULO CONTENEDOR PRINCIPAL DEL JUGADOR*/
+
+    #player-main-container{
+        background-color: #3f3a3a;
+        display: flex;
+    }
+
+
+    /*TÍTULO: NIVEL DE EXPERIENCIA*/
+
+        #exp-container{
+            width: 200px;
+            display: flex;
+            justify-content:center;
+            align-items:center;
+
+        }
+
+        #exp-container img{
+            position: absolute;
+            top: 100px;
+        }
+
+        #exp-container h2{
+            position: absolute;
+            align-self: center;
+            top: 100px;
+            color: white;
+            display: flex;
+        }
+
+
+    /*TÍTULO: NIVEL DE AYUNTAMIENTO*/
+
+        #town-hall-container{
+            width: 30%;
+            margin: auto;
+            text-align: center;
+            align-items: center;
+
+        }
+
+        #town-hall-container img{
+            display: inline-block;
+        }
+
+        #town-hall-container h2{
+            color: white;
+        }
+
+
+    /*TÍTULO: INFORMACIÓN DEL JUGADOR*/
+
+        #player-container{
+            width: 200px;
+            padding: 0;
+            height: auto;
+        }
+
+        #player-container #nombre-jugador-span{
+            color: white;
+            font-size: 30px;
+        }
+
+        #player-container #tag-jugador-span{
+            color: white;
+            font-size:10px;
+        }
+
+        #player-container #clan-name-span{
+            color: #FFEB3B;
+            font-size:20px;
+        }
+
+        #player-container #trophies-content{
+            background-color: black;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+/*TÍTULO CONTENEDOR PRINCIPAL DE TROPAS*/
+
+        /*TÍTULO: INFORMACIÓN DE LAS TROPAS*/
+
+            #troops-main-container {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr); /* Esto crea 6 columnas */
+                gap: 20px; /* Espaciado entre las tropas */
+                overflow: hidden; /* Oculta cualquier tropa fuera de la vista */
+                padding: 10px;
+                box-sizing: border-box;
+                background-color: lightblue;
+            }
+            
+            #info-troops {
+                text-align: center;
+                background-color: rgb(240, 240, 240); /* Color de fondo para las tropas */
+                padding: 10px;
+                border-radius: 5px; /* Bordes redondeados para el diseño */
+            }
+            
+            #troops-main-container img {
+                width: 50%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+                height: auto; /* Mantiene la proporción de la imagen */
+            }
+
+            #nav-buttons-content{
+                width: 100%;
+                display: flex;
+                justify-content:space-around;
+                margin-top: 20px;
+            }
+
+            #nav-buttons-content button{
+                width: 20%;
+            }

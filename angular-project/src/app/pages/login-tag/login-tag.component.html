@@ -1,0 +1,15 @@
+<div id="main-container">
+    <form (ngSubmit)="onSubmit()" #playerForm="ngForm" id="input-tag">
+      <label for="">Ingresa tu tag de jugador</label>
+      <br>
+      <input type="text" [(ngModel)]="playerTag" name="playerTag">
+      <br>
+      <button type="submit" [disabled]="playerForm.invalid">Buscar</button>
+    </form>
+
+    <div id="datos-jugador">
+      <div *ngIf="playerData;">
+        <p>{{ playerData.name }}</p>
+      </div>
+    </div>
+</div>

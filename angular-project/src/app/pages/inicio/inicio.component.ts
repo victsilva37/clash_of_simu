@@ -10,37 +10,70 @@ import { MenuComponent } from '../../components/menu/menu.component';
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css'],
 })
+
 export class InicioComponent implements OnInit {
-  playerData: any; // Aquí defines playerData
-  currentPage: number = 0; // Página actual (inicia en 0)
-  itemsPerPage: number = 6; // Número de tropas por página
+  playerData: any; // Datos originales
+  filteredTroops: any[] = []; // Tropas filtradas
+  currentPage: number = 0; // Página actual
+  itemsPerPage: number = 8; // Número de tropas por página
+  totalPages: number = 0; // Total de páginas calculadas
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    // Recuperar datos del estado de navegación
-    const navigation = history.state;
-    if (navigation && navigation.playerData) {
-      this.playerData = navigation.playerData; // Asigna los datos a playerData
-    }
-  }
-
-  // Obtener las tropas a mostrar en la página actual
-  get troopsToShow() {
-    const startIndex = this.currentPage * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.playerData.troops.slice(startIndex, endIndex); // Slice para mostrar solo las tropas correspondientes
-  }
-
-  // Función para mover el carrusel a la siguiente página
-  moveCarousel(direction: string): void {
-    const totalPages = Math.ceil(this.playerData.troops.length / this.itemsPerPage);
-
-    if (direction === 'next') {
-      this.currentPage = (this.currentPage + 1) % totalPages;
-    } else if (direction === 'prev') {
-      this.currentPage = (this.currentPage - 1 + totalPages) % totalPages;
-    }
-  }
   
+    ngOnInit(): void {
+      this.mostrarInfoJugador();
+      this.mostrarInfoTropas();
+    }
+
+  //TÍTULO: INFORMACIÓN DEL JUGADOR
+    mostrarInfoJugador(){
+      // Recuperar datos del estado de navegación
+      const navigation = history.state;
+      if (navigation && navigation.playerData) {
+        this.playerData = navigation.playerData;
+      }
+    }
+
+  //TÍTULO: INFORMACIÓN DE LAS TROPAS
+
+    mostrarInfoTropas(){
+      // Recuperar datos del estado de navegación
+      const navigation = history.state;
+      if (navigation && navigation.playerData) {
+        // Filtrar las tropas válidas
+        this.filteredTroops = this.playerData.troops.filter(
+          (troop: any) =>
+            troop.village == 'home' &&
+            troop.name != 'Ice Hound' &&
+            !troop.name.startsWith('Super') &&
+            !troop.name.startsWith('Sneaky') &&
+            !troop.name.startsWith('Rocket') &&
+            !troop.name.startsWith('Inferno')
+        );
+
+        // Calcular el número total de páginas
+        this.totalPages = Math.ceil(this.filteredTroops.length / this.itemsPerPage);
+      }
+    }
+
+
+  //TÍTULO: BOTONES PAGINATION
+
+    // Obtener las tropas a mostrar en la página actual
+    get troopsToShow() {
+      const startIndex = this.currentPage * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      return this.filteredTroops.slice(startIndex, endIndex); // Slice para mostrar las tropas filtradas
+    }
+
+    // Función para mover el carrusel a la siguiente página
+    moveCarousel(direction: string): void {
+      if (direction === 'next' && this.currentPage < this.totalPages - 1) {
+        this.currentPage++; // Avanzar página
+      } else if (direction === 'prev' && this.currentPage > 0) {
+        this.currentPage--; // Retroceder página
+      }
+    }
 }
+

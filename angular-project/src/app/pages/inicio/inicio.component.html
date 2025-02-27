@@ -43,27 +43,43 @@
 
 <!--TÍTULO CONTENEDOR PRINCIPAL DE TROPAS-->
 
-    <h2>Tropas</h2>
+    <div id="troops-main-container">
+        <h2>Tropas</h2>
 
-    <!--TÍTULO: INFORMACIÓN DE LAS TROPAS-->
+        <!--TÍTULO: INFORMACIÓN DE LAS TROPAS-->
+        
+            <div id="troops-content">
+                
+                <div *ngFor="let troop of troopsToShow" id="info-troops">
 
-        <div id="troops-main-container">
+                    <div>
+                        <img src="img/troops/{{ troop.name }}.png" alt="{{ troop.name }}">
+                        <h4>{{ troop.name }}</h4>
+                        <h3>{{ troop.level }}</h3>
+                    </div>
 
-            <div *ngFor="let troop of troopsToShow" id="info-troops">
-                <img src="img/troops/{{ troop.name }}.png" alt="{{ troop.name }}">
-                <h4>{{ troop.name }}</h4>
+                </div>
+                    
             </div>
 
-            
-            
-        </div>
 
+        <!--TÍTULO: BOTONES PAGINATION-->
 
         <div id="nav-buttons-content">
             <!-- Botones de navegación para el carrusel -->
-            <button (click)="moveCarousel('prev')">Anterior</button>
-            <button (click)="moveCarousel('next')">Siguiente</button>
+            <button (click)="moveCarousel('prev')" [disabled]="currentPage === 0">Anterior</button>
+            <button (click)="moveCarousel('next')" [disabled]="currentPage === totalPages - 1">Siguiente</button>
         </div>
+          
+
+    </div>
+    
+
+    
+
+   
+
+        
 
 
     

@@ -84,29 +84,58 @@
 
 /*TÍTULO CONTENEDOR PRINCIPAL DE TROPAS*/
 
+    #troops-main-container{
+        background-color: #2C2C2C;
+        color: #FFEB3B;
+    }
+
+        #troops-main-container h3{
+            background-color: blue;
+            width: 100px;
+            position: absolute;
+            top: 665px;
+        }
+
         /*TÍTULO: INFORMACIÓN DE LAS TROPAS*/
 
-            #troops-main-container {
+            #troops-content{
                 display: grid;
-                grid-template-columns: repeat(6, 1fr); /* Esto crea 6 columnas */
+                grid-template-columns: repeat(8, 1fr); /* Esto crea 6 columnas */
                 gap: 20px; /* Espaciado entre las tropas */
                 overflow: hidden; /* Oculta cualquier tropa fuera de la vista */
                 padding: 10px;
-                box-sizing: border-box;
-                background-color: lightblue;
             }
             
+            #troops-content#troops{
+                background-color: yellow;
+                display: flex;
+            }
+          
             #info-troops {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 text-align: center;
-                background-color: rgb(240, 240, 240); /* Color de fondo para las tropas */
                 padding: 10px;
-                border-radius: 5px; /* Bordes redondeados para el diseño */
+                box-sizing: border-box;
+              }
+              
+            #info-troops img {
+                width: 100px; /* Ajusta al tamaño deseado */
+                height: 100px; /* Ajusta al tamaño deseado */
+                object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+                border-radius: 8px; /* Opcional: bordes redondeados */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
             }
             
-            #troops-main-container img {
-                width: 50%; /* Hace que la imagen ocupe todo el ancho del contenedor */
-                height: auto; /* Mantiene la proporción de la imagen */
+            #info-troops h4 {
+                margin-top: 8px; /* Espacio entre la imagen y el texto */
+                font-size: 14px; /* Ajusta el tamaño del texto */
             }
+              
+
+        /*TÍTULO: BOTONES PAGINATION*/
 
             #nav-buttons-content{
                 width: 100%;

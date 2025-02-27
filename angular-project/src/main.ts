@@ -11,4 +11,3 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),      // Proveedor para rutas
   ],
 }).catch((err) => console.error('Error al iniciar la aplicación:', err));
-

@@ -1,0 +1,115 @@
+/*TÍTULO BOTÓN ENTRENAR*/
+
+    #btn-entrenar-container{
+        background-color: blue;
+        width:40%;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    #btn-entrenar-container button{
+        width: 100%;
+    }
+
+
+/*TÍTULO MODAL SIMULACIÓN*/
+
+    #simulacion-container{
+        background-color: red;
+        width: 50%;
+        margin: auto;
+    }
+
+    #opc-train-content{
+        background-color: green;
+        width: 70%;
+        margin: auto;
+        padding:10px
+    }
+
+    #opc-train-content button{
+        width: 100%;
+    }
+
+    /*TÍTULO: ENTRENAR TROPAS*/
+
+        /* Inicialmente oculto */
+        #random-troops-content.hidden-tropas {
+            display: none;
+        }
+
+        /* Clase para mostrar el contenedor con display: flex */
+        #random-troops-content.mostrar-tropas {
+            background-color: yellow;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+
+        #random-troops-content.mostrar-tropas img{
+            width: 100px;
+            height: 100px;
+            object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+            border-radius: 8px; /* Opcional: bordes redondeados */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
+        }
+
+
+    /*TÍTULO: ELABORAR HECHIZOS*/
+
+        /* Inicialmente oculto */
+        #random-spells-content.hidden-hechizos {
+            display: none;
+        }
+
+        /* Clase para mostrar el contenedor con display: flex */
+        #random-spells-content.mostrar-hechizos {
+            background-color: yellow;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+
+        #random-spells-content.mostrar-hechizos img{
+            width: 100px;
+            height: 100px;
+            object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+            border-radius: 8px; /* Opcional: bordes redondeados */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
+        }
+
+
+    /*TÍTULO: ELEGIR HÉROES*/
+
+        /* Inicialmente oculto */
+        #random-heroes-content.hidden-heroes {
+            display: none;
+        }
+
+        /* Clase para mostrar el contenedor con display: flex */
+        #random-heroes-content.mostrar-heroes {
+            background-color: yellow;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+
+        #random-heroes-content.mostrar-heroes img{
+            width: 100px;
+            height: 100px;
+            object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+            border-radius: 8px; /* Opcional: bordes redondeados */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
+        }

@@ -11,46 +11,47 @@
 
             <!--TÍTULO: ENTRENAR TROPAS-->
 
-                <button (click)="entrenarTropas()" [disabled]="btnEntrenarTropas">Entrenar Tropas y supertropas</button>
+            <button (click)="entrenarTropas()" [disabled]="btnEntrenarTropas">Entrenar Tropas y supertropas</button>
 
-                <div id="random-troops-content" class="hidden-tropas">
-                    <div *ngFor="let troop of troopsToShow" id="info-troops">
-                        <div>
-                            <img src="img/troops/{{ troop.name }}.png" alt="{{ troop.name }}">
-                            <h4>{{ troop.name }}</h4>
-                        </div>
+            <div id="random-troops-content" class="hidden-tropas">
+                <div *ngFor="let troop of troopsToShow" id="info-troops">
+                    <div>
+                        <img src="img/troops/{{ troop.name }}.png" alt="{{ troop.name }}">
+                        <h4>{{ troop.name }} (Espacio: {{ troop.space }})</h4>
                     </div>
                 </div>
-                <br><br><br>
+            </div>
+            
+                <br><br><br> 
 
 
             <!--TÍTULO: ELABORAR HECHIZOS-->
 
-                <button (click)="elaborarHechizos()" [disabled]="btnElaborarHechizos">Elaborar hechizos</button>
+               <!-- <button (click)="elaborarHechizos()" [disabled]="btnElaborarHechizos">Elaborar hechizos</button> -->
 
-                <div id="random-spells-content" class="hidden-hechizos">
+                <!-- <div id="random-spells-content" class="hidden-hechizos">
                     <div *ngFor="let spell of spellsToShow" id="info-spells">
                         <div>
                             <img src="img/spells/{{ spell.name }}.png" alt="{{ spell.name }}">
                             <h4>{{ spell.name }}</h4>
                         </div>
                     </div>
-                </div>
-                <br><br><br>
+                </div> -->
+                <br><br><br> 
 
 
             <!--TÍTULO: ELEGIR HÉROES-->
 
-                <button (click)="elegirHeroes()" [disabled]="btnElegirHeroes">Elegir Héroes</button>
+                <!-- <button (click)="elegirHeroes()" [disabled]="btnElegirHeroes">Elegir Héroes</button> -->
 
-                <div id="random-heroes-content" class="hidden-heroes">
+                <!-- <div id="random-heroes-content" class="hidden-heroes">
                     <div *ngFor="let heroe of heroesToShow" id="info-heroes">
                         <div>
                             <img src="img/heroes/{{ heroe.name }}.png" alt="{{ heroe.name }}">
                             <h4>{{ heroe.name }}</h4>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <br><br><br>
 
         </div>
@@ -58,7 +59,9 @@
         <button>Simular</button>
     </div>
  
+<div>
 
+<!-- </div> -->
     <!-- <div id="random-troops-main-container">
         <h2>Tropas Aleatorias</h2> -->
     
@@ -78,4 +81,7 @@
         </div> -->
     <!-- </div> -->
     
+
+
+      
     

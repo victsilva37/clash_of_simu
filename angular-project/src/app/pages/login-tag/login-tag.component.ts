@@ -31,6 +31,8 @@ export class LoginTagComponent implements OnInit {
   
     this.isLoading = true;
     this.playerData = null;
+
+    sessionStorage.setItem('playerTag', this.playerTag);
   
     this.clashOfClansService.getPlayer(this.playerTag).subscribe({
       next: (data) => {

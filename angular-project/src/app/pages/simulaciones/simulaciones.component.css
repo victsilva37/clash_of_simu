@@ -33,6 +33,15 @@
 
     /*TÍTULO: ENTRENAR TROPAS*/
 
+        #random-troops-content {
+            max-height: 300px; /* Altura máxima del contenedor */
+            overflow-y: auto; /* Habilitar scroll vertical */
+            border: 1px solid #ccc; /* Opcional: agregar un borde para delimitar el área */
+            padding: 10px; /* Espaciado interno */
+            background-color: #f9f9f9; /* Fondo opcional */
+            border-radius: 8px; /* Bordes redondeados */
+        }
+
         /* Inicialmente oculto */
         #random-troops-content.hidden-tropas {
             display: none;
@@ -58,8 +67,30 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
         }
 
+        
+        #info-troops {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* Separación entre tropas */
+        }
+        
+        
+        #info-troops h4 {
+            margin: 0;
+            font-size: 14px;
+        }
+    
 
     /*TÍTULO: ELABORAR HECHIZOS*/
+
+        #random-spells-content {
+            max-height: 300px; /* Altura máxima del contenedor */
+            overflow-y: auto; /* Habilitar scroll vertical */
+            border: 1px solid #ccc; /* Opcional: agregar un borde para delimitar el área */
+            padding: 10px; /* Espaciado interno */
+            background-color: #f9f9f9; /* Fondo opcional */
+            border-radius: 8px; /* Bordes redondeados */
+        }
 
         /* Inicialmente oculto */
         #random-spells-content.hidden-hechizos {
@@ -85,6 +116,20 @@
             border-radius: 8px; /* Opcional: bordes redondeados */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
         }
+
+        
+        #info-spells {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* Separación entre tropas */
+        }
+        
+        
+        #info-spells h4 {
+            margin: 0;
+            font-size: 14px;
+        }
+
 
 
     /*TÍTULO: ELEGIR HÉROES*/

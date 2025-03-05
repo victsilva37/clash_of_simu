@@ -11,33 +11,42 @@
 
             <!--TÍTULO: ENTRENAR TROPAS-->
 
-            <button (click)="entrenarTropas()" [disabled]="btnEntrenarTropas">Entrenar Tropas y supertropas</button>
+                <button (click)="entrenarTropas()" [disabled]="btnEntrenarTropas">Entrenar Tropas</button>
 
-            <div id="random-troops-content" class="hidden-tropas">
-                <div *ngFor="let troop of troopsToShow" id="info-troops">
+                
+                <h3>Tropas entrenadas</h3>
+                <p>Espacio usado: {{ totalSpaceUsed }} / 260</p>
+                
+                <div id="random-troops-content" class="mostrar-tropas" style="max-height: 400px; overflow-y: auto;">
+                    <div *ngFor="let troop of troopsToShow" id="info-troops">
                     <div>
                         <img src="img/troops/{{ troop.name }}.png" alt="{{ troop.name }}">
-                        <h4>{{ troop.name }} (Espacio: {{ troop.space }})</h4>
+                        <h4>{{ troop.name }}</h4>
+                        <p>Cantidad: {{ troop.quantity }}</p>
+                        <p>Espacio total: {{ troop.totalSpace }}</p>
+                    </div>
                     </div>
                 </div>
-            </div>
-            
-                <br><br><br> 
-
-
+                  
+                  
+                
             <!--TÍTULO: ELABORAR HECHIZOS-->
 
-               <!-- <button (click)="elaborarHechizos()" [disabled]="btnElaborarHechizos">Elaborar hechizos</button> -->
+               <button (click)="elaborarHechizos()" [disabled]="btnElaborarHechizos">Elaborar hechizos</button>
 
-                <!-- <div id="random-spells-content" class="hidden-hechizos">
-                    <div *ngFor="let spell of spellsToShow" id="info-spells">
-                        <div>
-                            <img src="img/spells/{{ spell.name }}.png" alt="{{ spell.name }}">
-                            <h4>{{ spell.name }}</h4>
-                        </div>
-                    </div>
-                </div> -->
-                <br><br><br> 
+               <h3>Tropas entrenadas</h3>
+               <p>Espacio usado: {{ totalSpaceSpellUsed }} / 11</p>
+               
+               <div id="random-spells-content" class="mostrar-hechizos" style="max-height: 400px; overflow-y: auto;">
+                   <div *ngFor="let spell of spellsToShow" id="info-spells">
+                   <div>
+                       <img src="img/spells/{{ spell.name }}.png" alt="{{ spell.name }}">
+                       <h4>{{ spell.name }}</h4>
+                       <p>Cantidad: {{ spell.quantity }}</p>
+                       <p>Espacio total: {{ spell.totalSpace }}</p>
+                   </div>
+                   </div>
+               </div>
 
 
             <!--TÍTULO: ELEGIR HÉROES-->

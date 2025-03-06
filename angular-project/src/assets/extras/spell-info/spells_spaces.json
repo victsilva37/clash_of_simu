@@ -1,0 +1,21 @@
+{
+    "hechizos": [
+      { "name": "Lightning Spell", "space": 1 },
+      { "name": "Healing Spell", "space": 2 },
+      { "name": "Rage Spell", "space": 2 },
+      { "name": "Jump Spell", "space": 2 },
+      { "name": "Freeze Spell", "space": 1 },
+      { "name": "Clone Spell", "space": 3 },
+      { "name": "Invisibility Spell", "space": 1 },
+      { "name": "Recall Spell", "space": 2 },
+      { "name": "Revive Spell", "space": 2 },
+      { "name": "Poison Spell", "space": 1 },
+      { "name": "Earthquake Spell", "space": 1 },
+      { "name": "Haste Spell", "space": 1 },
+      { "name": "Skeleton Spell", "space": 1 },
+      { "name": "Bat Spell", "space": 1 },
+      { "name": "Overgrowth Spell", "space": 2 }
+   
+    ]
+}
+  

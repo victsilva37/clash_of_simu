@@ -8,7 +8,7 @@
         <!--TÍTULO: NIVEL DE EXPERIENCIA-->
 
             <div id="exp-container">
-                <img src="img/icons_coc/exp_icon.webp" alt="" width="75">
+                <img src="/assets/img/icons_coc/exp_icon.webp" alt="" width="75">
                 <h2>{{ playerData.expLevel }}</h2>
             </div>
 
@@ -16,7 +16,7 @@
         <!--TÍTULO: NIVEL DE AYUNTAMIENTO-->
 
             <div id="town-hall-container">
-                <img src="img/ayuntamientos/town_hall_{{ playerData.townHallLevel }}.png" alt="">
+                <img src="/assets/img/ayuntamientos/town_hall_{{ playerData.townHallLevel }}.png" alt="">
                 <h2>Nivel {{ playerData.townHallLevel}}</h2>
             </div>
 
@@ -32,7 +32,7 @@
                 <span id="clan-name-span">{{ playerData.clan?.name }}</span>
                 <br>
                 <div id="trophies-content">
-                    <img src="img/icons_coc/trophy_icon.png" alt="" width="30" height="30">
+                    <img src="/assets/img/icons_coc/trophy_icon.png" alt="" width="30" height="30">
                     <h3>{{ playerData.trophies }}</h3>
                 </div>
                 
@@ -41,120 +41,64 @@
     </div>
 
 
-<!--TÍTULO CONTENEDOR PRINCIPAL DE TROPAS-->
+<!--SECCIÓN: COLECCIONES-->
 
-    <div id="troops-main-container">
-        <h2>Tropas</h2>
-
-        <!--TÍTULO: INFORMACIÓN DE LAS TROPAS-->
+    <div id="collections-container">
         
-            <div id="troops-content">
-                
-                <div *ngFor="let troop of troopsToShow" id="info-troops">
+    <!--TÍTULO CONTENEDOR PRINCIPAL DE TROPAS-->
 
-                    <div>
-                        <img src="img/troops/{{ troop.name }}.png" alt="{{ troop.name }}">
-                        <h4>{{ troop.name }}</h4>
-                        
+        <div id="troops-main-container">
+            <h2>Tropas</h2>
+    
+            <div id="troops-content" class="scrollable-carousel">
+                <div id="info-troops" *ngFor="let troop of filteredTroops">
+                    <img src="assets/img/troops/{{ troop.name }}.png" alt="{{ troop.name }}">
+                    <p>{{ troop.name }}</p>
+                </div>
+            </div>
+            
+        </div>
+
+
+
+    <!--TÍTULO CONTENEDOR PRINCIPAL DE HECHIZOS-->
+
+        <div id="spells-main-container">
+            <h2>Hechizos</h2>
+
+            <!--TÍTULO: INFORMACIÓN DE LOS HECHIZOS-->
+
+                <div id="spells-content">
+                    <div *ngFor="let spell of filteredSpells" id="info-spells">
+                        <img src="/assets/img/spells/{{spell.name}}.png" alt="">
+                        <p>{{ spell.name }}</p>
                     </div>
-
                 </div>
-                    
-            </div>
 
-
-        <!--TÍTULO: BOTONES PAGINATION (TROPAS)-->
-
-        <div id="troop-btns-nav">
-            <!-- Botones de navegación para el carrusel -->
-            <button (click)="moveCarouselTroops('prev')" [disabled]="currentPageTroops === 0">Anterior</button>
-            <button (click)="moveCarouselTroops('next')" [disabled]="currentPageTroops === totalPagesTroops - 1">Siguiente</button>
+    
         </div>
-          
-
-    </div>
 
 
-<!--TÍTULO CONTENEDOR PRINCIPAL DE SUPERTROPAS-->
+    <!--TÍTULO CONTENEDOR PRINCIPAL DE HECHIZOS-->
 
-    <div id="s_troops-main-container">
-        <h2>Super Tropas</h2>
+        <div id="heroes-main-container">
+            <h2>Héroes</h2>
 
-        <!--TÍTULO: INFORMACIÓN DE LAS SUPERTROPAS-->
+            <!--TÍTULO: INFORMACIÓN DE LOS HECHIZOS-->
 
-            <div id="supertroops-content">
-                    
-                <div *ngFor="let supertroop of supertroopsToShow" id="info-supertroops">
-
-                    <div>
-                        <img src="img/supertroops/{{ supertroop.name }}.png" alt="{{ supertroop.name }}">
-                        <h4>{{ supertroop.name }}</h4>
+                <div id="heroes-content">
+                    <div *ngFor="let heroe of filteredHeroes" id="info-heroes">
+                        <img src="/assets/img/heroes/{{heroe.name}}.png" alt="">
+                        <p>{{ heroe.name }}</p>
                     </div>
-
                 </div>
-                    
-            </div>
 
 
-        <!--TÍTULO: BOTONES PAGINATION (SUPERTROPAS)-->
-
-            <div id="supertroop-btns-nav">
-                <!-- Botones de navegación para el carrusel -->
-                <button (click)="moveCarouselSuperTroops('prev')" [disabled]="currentPageSuperTroops === 0">Anterior</button>
-                <button (click)="moveCarouselSuperTroops('next')" [disabled]="currentPageSuperTroops === totalPagesSuperTroops - 1">Siguiente</button>
-            </div>
-      
-    </div>
-
-
-<!--TÍTULO CONTENEDOR PRINCIPAL DE HECHIZOS-->
-
-    <div id="spells-main-container">
-        <h2>Hechizos</h2>
-
-        <!--TÍTULO: INFORMACIÓN DE LOS HECHIZOS-->
-
-            <div id="spells-content">
-                <div *ngFor="let spell of spellsToShow" id="info-spells">
-                    <img src="img/spells/{{spell.name}}.png" alt="">
-                    <h4>{{ spell.name }}</h4>
-                </div>
-            </div>
-
-        <!--TÍTULO: BOTONES PAGINATION (HECHIZOS)-->
-
-            <div id="spells-btns-nav">
-                <!-- Botones de navegación para el carrusel -->
-                <button (click)="moveCarouselSpells('prev')" [disabled]="currentPageSpells === 0">Anterior</button>
-                <button (click)="moveCarouselSpells('next')" [disabled]="currentPageSpells === totalPagesSpells - 1">Siguiente</button>
-            </div>
+        </div>
 
     </div>
 
 
-<!--TÍTULO CONTENEDOR PRINCIPAL DE HECHIZOS-->
-
-<div id="heroes-main-container">
-    <h2>Héroes</h2>
-
-    <!--TÍTULO: INFORMACIÓN DE LOS HECHIZOS-->
-
-        <div id="heroes-content">
-            <div *ngFor="let heroe of heroesToShow" id="info-heroes">
-                <img src="img/heroes/{{heroe.name}}.png" alt="">
-                <h4>{{ heroe.name }}</h4>
-            </div>
-        </div>
-
-    <!--TÍTULO: BOTONES PAGINATION (HECHIZOS)-->
-
-        <div id="heroes-btns-nav">
-            <!-- Botones de navegación para el carrusel -->
-            <button (click)="moveCarouselHeroes('prev')" [disabled]="currentPageHeroes === 0">Anterior</button>
-            <button (click)="moveCarouselHeroes('next')" [disabled]="currentPageHeroes === totalPagesHeroes - 1">Siguiente</button>
-        </div>
-
-</div>
 
     
 

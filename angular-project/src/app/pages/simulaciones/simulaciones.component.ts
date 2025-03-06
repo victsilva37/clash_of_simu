@@ -3,11 +3,10 @@ import { MenuComponent } from "../../components/menu/menu.component";
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ClashOfClansService } from '../../services/clash-api.service';
-import { TroopSpaceService } from '../../../../public/extras/troop-info/troops-spaces.service';
+import { TroopSpaceService } from '../../../assets/extras/troop-info/troops-spaces.service';
 import { TroopSpaceData } from '../../interfaces/troops-spaces';
 import { forkJoin } from 'rxjs';
-import { LoginTagComponent } from '../login-tag/login-tag.component';
-import { SpellsSpacesService } from '../../../../public/extras/spell-info/spells-spaces.service';
+import { SpellsSpacesService } from '../../../assets/extras/spell-info/spells-spaces.service';
 
 @Component({
   selector: 'app-simulaciones',
@@ -19,13 +18,11 @@ import { SpellsSpacesService } from '../../../../public/extras/spell-info/spells
 export class SimulacionesComponent implements OnInit {
 
   playerData: any; // Datos del jugador de la API
-  troopsData: any[] = []; // Datos de las tropas combinadas
 
   constructor(
     private clashOfClansService: ClashOfClansService,
     private troopSpaceService: TroopSpaceService,
     private spellSpaceService: SpellsSpacesService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +47,7 @@ export class SimulacionesComponent implements OnInit {
 
         this.mostrarInfoTropas();
         this.mostrarInfoHechizos();
+        this.mostrarInfoHeroes();
       },
       (error) => {
         console.error('Error al obtener los datos:', error);
@@ -57,34 +55,17 @@ export class SimulacionesComponent implements OnInit {
     );
   }
 
+
+
+//TÍTULO: ENTRENAR TROPAS
+
   // Manejo de tropas
   spaceData: any = { tropas: [] }; // Datos de espacio de tropas
-  troopsToShow: any[] = [];
-  filteredTroops: any[] = [];
-  btnEntrenarTropas: boolean = false;
+  btnEntrenarTropas: boolean = false; //Entrenamiento de tropas
+  totalSpaceUsed: number = 0 //Inicializar contador de espacios usados
 
-  mostrarInfoTropas(): void {
-    this.filteredTroops = this.playerData.troops
-      .filter(
-        (troop: any) =>
-          troop.village === 'home' &&
-          troop.name !== 'Ice Hound' &&
-          !troop.name.startsWith('Super') &&
-          !troop.name.startsWith('Sneaky') &&
-          !troop.name.startsWith('Rocket') &&
-          !troop.name.startsWith('Inferno')
-      )
-      .map((troop: any) => {
-        const spaceInfo = this.spaceData.tropas.find((item: any) => item.name === troop.name);
-        return {
-          ...troop,
-          space: spaceInfo?.space || 0, // Asignar 0 si no se encuentra el espacio
-        };
-      });
-  }
-
-  totalSpaceUsed: number = 0
   entrenarTropas(): void {
+    //
     const randomTroopsContent = document.getElementById('random-troops-content');
 
     if (randomTroopsContent) {
@@ -117,6 +98,35 @@ export class SimulacionesComponent implements OnInit {
     this.totalSpaceUsed = currentSpace;
     this.btnEntrenarTropas = true;
   }
+
+
+  troopsToShow: any[] = []; //Mostrar tropas
+  filteredTroops: any[] = []; //Filtrar tropas según tipo
+
+
+//TÍTULO: MOSTRAR TROPAS ENTRENADAS
+
+  mostrarInfoTropas(): void {
+    this.filteredTroops = this.playerData.troops
+      .filter(
+        (troop: any) =>
+          troop.village === 'home' &&
+          troop.name !== 'Ice Hound' &&
+          !troop.name.startsWith('Super') &&
+          !troop.name.startsWith('Sneaky') &&
+          !troop.name.startsWith('Rocket') &&
+          !troop.name.startsWith('Inferno')
+      )
+      .map((troop: any) => {
+        const spaceInfo = this.spaceData.tropas.find((item: any) => item.name === troop.name);
+        return {
+          ...troop,
+          space: spaceInfo?.space || 0, // Asignar 0 si no se encuentra el espacio
+        };
+      });
+  }
+
+  
 
   // Manejo de hechizos
   spaceSpellData: any = { hechizos: [] };
@@ -172,8 +182,33 @@ export class SimulacionesComponent implements OnInit {
     this.btnElaborarHechizos = true;
   }
 
+  heroesData: any[] = []; // Datos de héroes procesados
+  filteredHeroes: any[] = []; // Héroes filtrados
+  btnElegirHeroes: boolean = false; // Estado del botón para héroes
 
+  mostrarInfoHeroes(): void {
+    this.filteredHeroes = this.playerData.heroes
+      .filter((hero: any) => hero.village === 'home')
+      .map((hero: any) => ({
+        ...hero,
+        isMaxed: hero.level === hero.maxLevel, // Información adicional para héroes
+      }));
+  }
 
+  elegirHeroes(): void {
+    const randomHeroesContent = document.getElementById('random-heroes-content');
+  
+    if (randomHeroesContent) {
+      randomHeroesContent.classList.remove('hidden-heroes');
+      randomHeroesContent.classList.add('mostrar-heroes');
+    }
+  
+    const selectedHeroes = [...this.filteredHeroes].sort(() => Math.random() - 0.5).slice(0, 3); // Selecciona hasta 3 héroes aleatorios
+  
+    this.heroesData = selectedHeroes;
+    this.btnElegirHeroes = true;
+  }
+  
 }
 
 

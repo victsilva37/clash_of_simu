@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; // Importa el Router
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../components/menu/menu.component';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule, MenuComponent],
+  imports: [CommonModule, MenuComponent, MatCardModule],
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css'],
 })
@@ -22,7 +23,6 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
     this.mostrarInfoJugador();
     this.mostrarInfoTropas();
-    this.mostrarInfoSuperTropas();
     this.mostrarInfoSpells();
     this.mostrarInfoHeroes()
   }
@@ -54,7 +54,7 @@ export class InicioComponent implements OnInit {
   //TÍTULO: INFORMACIÓN DE LAS TROPAS
 
     filteredTroops: any[] = []; // Tropas filtradas
-    itemsPerPageTroops: number = 8; // Número de tropas por página
+    itemsPerPageTroops: number = 16; // Número de tropas por página
     totalPagesTroops: number = 0; // Total de páginas calculadas
     mostrarInfoTropas(){
       // Recuperar datos del estado de navegación
@@ -77,68 +77,7 @@ export class InicioComponent implements OnInit {
     }
 
 
-  //TÍTULO: BOTONES PAGINATION (TROPAS)
 
-    currentPageTroops: number = 0; // Página actual
-    // Obtener las tropas a mostrar en la página actual
-    get troopsToShow() {
-      const startIndex = this.currentPageTroops * this.itemsPerPageTroops;
-      const endIndex = startIndex + this.itemsPerPageTroops;
-      return this.filteredTroops.slice(startIndex, endIndex); // Slice para mostrar las tropas filtradas
-    }
-
-    // Función para mover el carrusel a la siguiente página
-    moveCarouselTroops(direction: string): void {
-      if (direction === 'next' && this.currentPageTroops < this.totalPagesTroops - 1) {
-        this.currentPageTroops++; // Avanzar página
-      } else if (direction === 'prev' && this.currentPageTroops > 0) {
-        this.currentPageTroops--; // Retroceder página
-      }
-    }
-
-
-//TÍTULO CONTENEDOR PRINCIPAL DE SUPERTROPAS
-
-    //TÍTULO: INFORMACIÓN DE LAS TROPAS
-      filteredSuperTroops: any[] = []; // Tropas filtradas
-      itemsPerPageSuperTroops: number = 8; // Número de tropas por página
-      totalPagesSuperTroops: number = 0; // Total de páginas calculadas
-      mostrarInfoSuperTropas(){
-        // Recuperar datos del estado de navegación
-        const navigation = history.state;
-        if (navigation && navigation.playerData) {
-          // Filtrar las tropas válidas
-          this.filteredSuperTroops = this.playerData.troops.filter(
-            (supertroop: any) =>
-              supertroop.village == 'home' &&
-              supertroop.name.startsWith('Super')
-          );
-
-          // Calcular el número total de páginas
-          this.totalPagesSuperTroops = Math.ceil(this.filteredSuperTroops.length / this.itemsPerPageSuperTroops);
-        }
-      }
-
-
-  //TÍTULO: BOTONES PAGINATION (SUPERTROPAS)
-
-    currentPageSuperTroops: number = 0; // Página actual
-
-    // Obtener las tropas a mostrar en la página actual
-    get supertroopsToShow() {
-      const startIndex = this.currentPageSuperTroops * this.itemsPerPageSuperTroops;
-      const endIndex = startIndex + this.itemsPerPageSuperTroops;
-      return this.filteredSuperTroops.slice(startIndex, endIndex); // Slice para mostrar las tropas filtradas
-    }
-
-    // Función para mover el carrusel a la siguiente página
-    moveCarouselSuperTroops(direction: string): void {
-      if (direction === 'next' && this.currentPageSuperTroops < this.totalPagesSuperTroops - 1) {
-        this.currentPageSuperTroops++; // Avanzar página
-      } else if (direction === 'prev' && this.currentPageSuperTroops > 0) {
-        this.currentPageSuperTroops--; // Retroceder página
-      }
-    }
 
 
 //TÍTULO CONTENEDOR PRINCIPAL DE LOS HECHIZOS
@@ -163,25 +102,6 @@ export class InicioComponent implements OnInit {
       }
 
 
-  //TÍTULO: BOTONES PAGINATION (HECHIZOS)
-
-    currentPageSpells: number = 0; // Página actual
-
-    // Obtener las tropas a mostrar en la página actual
-    get spellsToShow() {
-      const startIndex = this.currentPageSpells * this.itemsPerPageSpells;
-      const endIndex = startIndex + this.itemsPerPageSpells;
-      return this.filteredSpells.slice(startIndex, endIndex); // Slice para mostrar las tropas filtradas
-    }
-
-    // Función para mover el carrusel a la siguiente página
-    moveCarouselSpells(direction: string): void {
-      if (direction === 'next' && this.currentPageSpells < this.totalPagesSpells - 1) {
-        this.currentPageSpells++; // Avanzar página
-      } else if (direction === 'prev' && this.currentPageSpells > 0) {
-        this.currentPageSpells--; // Retroceder página
-      }
-    }
 
 //TÍTULO CONTENEDOR PRINCIPAL DE LOS HÉROES
 
@@ -205,25 +125,6 @@ export class InicioComponent implements OnInit {
     }
 
 
-    //TÍTULO: BOTONES PAGINATION (HÉROES)
-
-      currentPageHeroes: number = 0; // Página actual
-
-      // Obtener las tropas a mostrar en la página actual
-      get heroesToShow() {
-        const startIndex = this.currentPageHeroes * this.itemsPerPageHeroes;
-        const endIndex = startIndex + this.itemsPerPageHeroes;
-        return this.filteredHeroes.slice(startIndex, endIndex); // Slice para mostrar las tropas filtradas
-      }
-
-      // Función para mover el carrusel a la siguiente página
-      moveCarouselHeroes(direction: string): void {
-        if (direction === 'next' && this.currentPageHeroes < this.totalPagesHeroes - 1) {
-          this.currentPageHeroes++; // Avanzar página
-        } else if (direction === 'prev' && this.currentPageHeroes > 0) {
-          this.currentPageHeroes--; // Retroceder página
-        }
-      }
 
 
 }

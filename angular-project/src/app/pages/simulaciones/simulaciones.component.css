@@ -1,75 +1,114 @@
 #simulacion-container{
-    background-color: red;
-    width: 50%;
-    margin: auto;
+    background-color: #4A1E04;
+    width: 90%;
+    margin: auto; 
+    margin-top: 10px;
+    padding: 10px;
 }
 
-#opc-train-content{
-    background-color: green;
+#simulacion-container h2{
+    color: #FFD700;
+}
+
+/* #opc-train-content{
+    background-color: #cec9b0;
     width: 70%;
     margin: auto;
-    padding:10px
-}
+    padding:10px;
+} */
 
-#opc-train-content button{
+/* #opc-train-content button{
     width: 100%;
+} */
+
+#opc-train-content{
+    margin-top: 10px;
+    display: flex;
 }
-
-
 /*TÍTULO: MOSTRAR TROPAS ENTRENADAS*/
 
-    #random-troops-content {
-        max-height: 300px; /* Altura máxima del contenedor */
-        overflow-y: auto; /* Habilitar scroll vertical */
-        border: 1px solid #ccc; /* Opcional: agregar un borde para delimitar el área */
-        padding: 10px; /* Espaciado interno */
-        background-color: #f9f9f9; /* Fondo opcional */
-        border-radius: 8px; /* Bordes redondeados */
+    #troops-train-content{
+        background-color: #94928a;
+        width: 600px;
+        margin: auto;
+        padding:10px;
+        border-radius: 30px;
+        box-shadow: 0 4px 8px #FFD700;
     }
 
-    /* Inicialmente oculto */
-    #random-troops-content.hidden-tropas {
-        display: none;
+    #troops-train-content button{
+        width: 100%;
     }
 
-    /* Clase para mostrar el contenedor con display: flex */
-    #random-troops-content.mostrar-tropas {
-        background-color: yellow;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        text-align: center;
-        padding: 10px;
-        box-sizing: border-box;
-    }
+        #random-troops-content {
+            height: 300px; /* Altura máxima del contenedor */
+            overflow-y: auto; /* Habilitar scroll vertical */
+            border: 1px solid #ccc; /* Opcional: agregar un borde para delimitar el área */
+            padding: 10px; /* Espaciado interno */
+            border-radius: 8px; /* Bordes redondeados */
+        }
+
+        /* Inicialmente oculto */
+        #random-troops-content.hidden-tropas {
+            display: none;
+        }
+
+        /* Clase para mostrar el contenedor con display: flex */
+        #random-troops-content.mostrar-tropas {
+            background-color: #4A1E04;
+            display: flex;
+            max-height: 400px;
+            align-items: center;
+            justify-content: start;
+            text-align: center;
+            padding: 10px;
+        }
 
 
-    #random-troops-content.mostrar-tropas img{
-        width: 100px;
-        height: 100px;
-        object-fit: cover; /* Ajusta la imagen dentro del contenedor */
-        border-radius: 8px; /* Opcional: bordes redondeados */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
-    }
+        #random-troops-content.mostrar-tropas img{
+            width: 100px;
+            height: 100px;
+            object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+            border-radius: 8px; /* Opcional: bordes redondeados */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
+        }
 
-    
-    #info-troops {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px; /* Separación entre tropas */
-    }
-    
-    
-    #info-troops h4 {
-        margin: 0;
-        font-size: 14px;
-    }
+        
+        #info-troops {
+            background-color: #6A331D;
+            border: 2px solid #FFD700;
+            display: flex;
+            padding: 10px;
+            justify-content: space-between;
+            margin-bottom: 10px; /* Separación entre tropas */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        
+        #info-troops h4 {
+            color: #FFF2C2;
+            margin: 0;
+            font-size: 12px;
+        }
     
 
 /*TÍTULO: MOSTRAR HECHIZOS ELABORADOS*/
 
+    #spells-elab-content{
+        background-color: #94928a;
+        width: 400px;
+        margin: auto;
+        padding:10px;
+        border-radius: 30px;
+        box-shadow: 0 4px 8px #FFD700;
+    }
+
+    #spells-elab-content button{
+        width: 100%;
+    }
+
     #random-spells-content {
-        max-height: 300px; /* Altura máxima del contenedor */
+        height: 300px; /* Altura máxima del contenedor */
         overflow-y: auto; /* Habilitar scroll vertical */
         border: 1px solid #ccc; /* Opcional: agregar un borde para delimitar el área */
         padding: 10px; /* Espaciado interno */
@@ -84,13 +123,13 @@
 
     /* Clase para mostrar el contenedor con display: flex */
     #random-spells-content.mostrar-hechizos {
-        background-color: yellow;
+        background-color: #4A1E04;
         display: flex;
+        max-height: 400px;
         align-items: center;
-        justify-content: space-around;
+        justify-content: start;
         text-align: center;
         padding: 10px;
-        box-sizing: border-box;
     }
 
     #random-spells-content.mostrar-hechizos img{
@@ -102,18 +141,45 @@
     }
 
     #info-spells {
+        background-color: #6A331D;
+        border: 2px solid #FFD700;
         display: flex;
-        align-items: center;
+        padding: 10px;
+        justify-content: space-between;
         margin-bottom: 10px; /* Separación entre tropas */
+        box-shadow: 0 4px 8px #FFD700;/* Separación entre tropas */
     }
     
     #info-spells h4 {
+        color: #FFF2C2;
         margin: 0;
-        font-size: 14px;
+        font-size: 12px;
     }
 
 
 /*TÍTULO: MOSTRAR HÉROES ELEGIDOS*/
+
+    #heroes-choice-container{
+        background-color: #94928a;
+        width: 400px;
+        margin: auto;
+        padding:10px;
+        border-radius: 30px;
+        box-shadow: 0 4px 8px #FFD700;
+    }
+
+    #heroes-choice-container button{
+        width: 100%;
+    }
+
+    #random-heroes-content {
+        height: 300px; /* Altura máxima del contenedor */
+        overflow-y: auto; /* Habilitar scroll vertical */
+        border: 1px solid #ccc; /* Opcional: agregar un borde para delimitar el área */
+        padding: 10px; /* Espaciado interno */
+        background-color: #f9f9f9; /* Fondo opcional */
+        border-radius: 8px; /* Bordes redondeados */
+    }
 
     /* Inicialmente oculto */
     #random-heroes-content.hidden-heroes {
@@ -122,13 +188,13 @@
 
     /* Clase para mostrar el contenedor con display: flex */
     #random-heroes-content.mostrar-heroes {
-        background-color: yellow;
+        background-color: #4A1E04;
         display: flex;
+        max-height: 400px;
         align-items: center;
-        justify-content: space-around;
+        justify-content: start;
         text-align: center;
         padding: 10px;
-        box-sizing: border-box;
     }
 
     #random-heroes-content.mostrar-heroes img{
@@ -137,4 +203,38 @@
         object-fit: cover; /* Ajusta la imagen dentro del contenedor */
         border-radius: 8px; /* Opcional: bordes redondeados */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
+    }
+
+    #info-heroes {
+        background-color: #6A331D;
+        border: 2px solid #FFD700;
+        display: flex;
+        padding: 10px;
+        justify-content: space-between;
+        margin-bottom: 10px; /* Separación entre tropas */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);/* Separación entre tropas */
+    }
+    
+    #info-heroes h4 {
+        color: #FFF2C2;
+        margin: 0;
+        font-size: 12px;
+    }
+
+
+
+    #btn-simular{
+        margin: auto;
+        width: 50%;
+    }
+
+    #btn-simular button{
+        background: #5e2b0e;
+        padding: 10px;
+        width: 100%;
+        color: #FFD700;
+        border: 2px solid #FFD700;
+        border-radius: 3px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        font-size: 15px;
     }

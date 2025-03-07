@@ -6,75 +6,71 @@
 <!--TÍTULO SIMULACIÓN-->
 
     <div id="simulacion-container">
-        <h2>Entrenamiento</h2>
         <div id="opc-train-content">
 
             <!--TÍTULO: ENTRENAR TROPAS-->
 
-                <button (click)="entrenarTropas()" [disabled]="btnEntrenarTropas">Entrenar Tropas</button>
+                <div id="troops-train-content">
+                    <button (click)="entrenarTropas()" [disabled]="btnEntrenarTropas">Entrenar Tropas</button>
 
-                
-            <!--TÍTULO: MOSTRAR TROPAS ENTRENADAS-->
-
-                <h3>Tropas entrenadas</h3>
-                <p>Espacio usado: {{ totalSpaceUsed }} / 260</p>
-                
-                <div id="random-troops-content" class="mostrar-tropas" style="max-height: 400px; overflow-y: auto;">
-                    <div *ngFor="let troop of troopsToShow" id="info-troops">
-                    <div>
-                        <img src="assets/img/troops/{{ troop.name }}.png" alt="{{ troop.name }}">
-                        <h4>{{ troop.name }}</h4>
-                        <p>Cantidad: {{ troop.quantity }}</p>
-                        <p>Espacio total: {{ troop.totalSpace }}</p>
-                    </div>
+                    <h3>Tropas entrenadas</h3>
+                    <p>Espacio usado: {{ totalSpaceUsed }} / 260</p>
+                    
+                    <div id="random-troops-content" class="mostrar-tropas">
+                        <div *ngFor="let troop of troopsToShow" id="info-troops">
+                        <div>
+                            <img src="assets/img/troops/{{ troop.name }}.png" alt="{{ troop.name }}">
+                            <h4>{{ troop.name }}</h4>
+                            <p>Cantidad: {{ troop.quantity }}</p>
+                        </div>
+                        </div>
                     </div>
                 </div>
-                  
-                  
-                
+
+            
             <!--TÍTULO: ELABORAR HECHIZOS-->
 
-               <button (click)="elaborarHechizos()" [disabled]="btnElaborarHechizos">Elaborar hechizos</button>
+                <div id="spells-elab-content">
+                    <button (click)="elaborarHechizos()" [disabled]="btnElaborarHechizos">Elaborar hechizos</button>
 
-
-            <!--TÍTULO: MOSTRAR HECHIZOS ELABORADOS-->
-
-               <h3>Hechizos elaborados</h3>
-               <p>Espacio usado: {{ totalSpaceSpellUsed }} / 11</p>
-               
-               <div id="random-spells-content" class="mostrar-hechizos" style="max-height: 400px; overflow-y: auto;">
-                   <div *ngFor="let spell of spellsToShow" id="info-spells">
-                   <div>
-                       <img src="assets/img/spells/{{ spell.name }}.png" alt="{{ spell.name }}">
-                       <h4>{{ spell.name }}</h4>
-                       <p>Cantidad: {{ spell.quantity }}</p>
-                       <p>Espacio total: {{ spell.totalSpace }}</p>
-                   </div>
-                   </div>
-               </div>
-
-
-            <!--TÍTULO: ELEGIR HÉROES-->
-
-                <button (click)="elegirHeroes()" [disabled]="btnElegirHeroes">Elegir Héroes</button>
-
-
-            <!--TÍTULO: MOSTRAR HÉROES ELEGIDOS-->
-            
-                <h3>Héroes seleccionados</h3>
-                <div id="random-heroes-content" class="hidden-heroes">
-                   
-                    <div *ngFor="let hero of heroesData">
-                        <img src="assets/img/heroes/{{ hero.name }}.png" alt="{{ hero.name }}">
-                        <p>{{ hero.name }} - Nivel: {{ hero.level }}</p>
-                        <p *ngIf="hero.isMaxed" class="text-green-600">Héroe al máximo nivel</p>
+                    <h3>Hechizos elaborados</h3>
+                    <p>Espacio usado: {{ totalSpaceSpellUsed }} / 11</p>
+                    
+                    <div id="random-spells-content" class="mostrar-hechizos">
+                        <div *ngFor="let spell of spellsToShow" id="info-spells">
+                        <div>
+                            <img src="assets/img/spells/{{ spell.name }}.png" alt="{{ spell.name }}">
+                            <h4>{{ spell.name }}</h4>
+                            <p>Cantidad: {{ spell.quantity }}</p>
+                        </div>
+                        </div>
                     </div>
                 </div>
-                <br><br><br>
+               
+            
+            <!--TÍTULO: ELEGIR HÉROES-->
 
+                <div id="heroes-choice-container">
+                    <button (click)="elegirHeroes()" [disabled]="btnElegirHeroes">Elegir Héroes</button>
+                    <h3>Héroes seleccionados</h3>
+                    <p>3 / 3</p>
+                    <div id="random-heroes-content" class="mostrar-heroes">
+                        <div *ngFor="let hero of heroesData" id="info-heroes">
+                        <div>
+                            <img src="assets/img/heroes/{{ hero.name }}.png" alt="{{ hero.name }}">
+                            <h4>{{ hero.name }}</h4>
+                            <p>Nivel: {{ hero.level }}</p>
+                        </div>
+                        </div>     
+                    </div>
+                </div>
+        </div>
+        <br>
+        
+        <div id="btn-simular">
+            <button>Simular</button>
         </div>
         
-        <button>Simular</button>
     </div>
  
 <div>

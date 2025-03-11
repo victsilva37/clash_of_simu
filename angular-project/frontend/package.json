@@ -20,8 +20,11 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
+    "@nestjs/typeorm": "^11.0.0",
+    "oracledb": "^6.8.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "typeorm": "^0.3.21",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

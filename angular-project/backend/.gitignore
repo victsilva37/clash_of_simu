@@ -56,4 +56,4 @@ pids
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 #Proyecto backend
-/src/app/environments/environment.ts
+/src/environments/environment.ts

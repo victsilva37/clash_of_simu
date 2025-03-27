@@ -68,10 +68,21 @@
         <br>
         
         <div id="btn-simular">
-            <button>Simular</button>
+            <button (click)="simular()">Simular</button>
         </div>
         
     </div>
+
+    <!-- Modal Resultado -->
+    <div id="resultadoModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" (click)="cerrarModal()">&times;</span>
+            <h3>Resultado de la Simulación</h3>
+            <p>Estrellas obtenidas: {{ estrellas }}</p>
+            <p>Porcentaje de daño: {{ porcentajeDano }}%</p>
+        </div>
+    </div>
+
  
 <div>
 

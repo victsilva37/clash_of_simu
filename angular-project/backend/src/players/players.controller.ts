@@ -2,7 +2,7 @@ import { Controller, Get, Post, Param, Body, HttpException, HttpStatus } from '@
 import { PlayersService } from './players.service'; // Importa el servicio
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/enviroment';
 
 @Controller('players') // Ruta base para este controlador
 export class PlayersController {

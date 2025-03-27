@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/enviroment';
 
 @Injectable()
 export class PlayersService {

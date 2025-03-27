@@ -62,7 +62,8 @@ export class SimulacionesComponent implements OnInit {
   // Manejo de tropas
   spaceData: any = { tropas: [] }; // Datos de espacio de tropas
   btnEntrenarTropas: boolean = false; //Entrenamiento de tropas
-  totalSpaceUsed: number = 0 //Inicializar contador de espacios usados
+  totalSpaceUsed: number = 0 //Inicializar contador de espacios usados}+
+  tropasEntrenadas: boolean = false
 
   entrenarTropas(): void {
     //
@@ -97,6 +98,7 @@ export class SimulacionesComponent implements OnInit {
     this.troopsToShow = selectedTroops;
     this.totalSpaceUsed = currentSpace;
     this.btnEntrenarTropas = true;
+    this.tropasEntrenadas = true;
   }
 
 
@@ -133,6 +135,7 @@ export class SimulacionesComponent implements OnInit {
   spellsToShow: any[] = [];
   filteredSpells: any[] = [];
   btnElaborarHechizos: boolean = false;
+  hechizosElaborados: boolean = false;
 
   mostrarInfoHechizos(): void {
     this.filteredSpells = this.playerData.spells
@@ -180,11 +183,13 @@ export class SimulacionesComponent implements OnInit {
     this.spellsToShow = selectedSpells;
     this.totalSpaceSpellUsed = currentSpace;
     this.btnElaborarHechizos = true;
+    this.hechizosElaborados = true
   }
 
   heroesData: any[] = []; // Datos de héroes procesados
   filteredHeroes: any[] = []; // Héroes filtrados
   btnElegirHeroes: boolean = false; // Estado del botón para héroes
+  heroesElegidos: boolean = false
 
   mostrarInfoHeroes(): void {
     this.filteredHeroes = this.playerData.heroes
@@ -207,6 +212,52 @@ export class SimulacionesComponent implements OnInit {
   
     this.heroesData = selectedHeroes;
     this.btnElegirHeroes = true;
+    this.heroesElegidos = true
+  }
+
+  estrellas: number = 0;
+  porcentajeDano: number = 0;
+
+  simular(): void {
+    if (this.tropasEntrenadas || this.hechizosElaborados || this.heroesElegidos){
+      this.porcentajeDano = Math.floor(Math.random() * 101);
+
+      // Ajustar la probabilidad de estrellas según el porcentaje de daño
+      const probabilidad = Math.random(); // Valor entre 0 y 1
+
+      if (this.porcentajeDano === 100) {
+        this.estrellas = 3; // Siempre 3 estrellas con 100% de daño
+      } else if (this.porcentajeDano >= 50) {
+        // Probabilidad alta de obtener 2 estrellas
+        this.estrellas = probabilidad > 0.2 ? 2 : 1;
+      } else if (this.porcentajeDano > 0) {
+        // Probabilidad más baja de obtener 1 estrella con daño menor
+        this.estrellas = probabilidad > 0.7 ? 1 : 0;
+      } else {
+        this.estrellas = 0; // Sin daño
+      }
+
+      // Mostrar modal
+      this.abrirModal();
+    } else {
+      alert("Entrena alguna weá")
+    }
+    
+    
+  }
+
+  abrirModal(): void {
+    const modal = document.getElementById('resultadoModal');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
+  cerrarModal(): void {
+    const modal = document.getElementById('resultadoModal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
   }
   
 }

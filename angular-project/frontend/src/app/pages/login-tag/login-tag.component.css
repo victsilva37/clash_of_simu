@@ -2,17 +2,34 @@
     background-color: #121212;
     height: 100vh;
     display: flex;
+    justify-content:  center;
+    align-items: center;
+    margin: auto;
 }
 
 #main-container label{
     color:  #FFFFFF;
 }
 
-#input-tag{
-    background-color: #2C2C2C;
-    width: 30%;
-    margin: auto;
-    text-align: center;
-    padding: 20px;
-}
- 
+
+    #input-tag{
+        background-color: #2C2C2C;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 20px
+    }
+
+    #datos-jugador p{
+        color: white;
+        margin: auto;
+    }
+
+    #input-api-code{
+        background-color: #2C2C2C;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+        margin-top: 40px;
+    }

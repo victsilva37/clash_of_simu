@@ -1,15 +1,38 @@
 <div id="main-container">
-    <form (ngSubmit)="onSubmit()" #playerForm="ngForm" id="input-tag">
-      <label for="">Ingresa tu tag de jugador</label>
-      <br>
-      <input type="text" [(ngModel)]="playerTag" name="playerTag">
-      <br>
-      <button type="submit" [disabled]="playerForm.invalid">Buscar</button>
-    </form>
+  <form (ngSubmit)="onSubmit()" #playerForm="ngForm" id="input-tag" method>
+    <label for="playerTag">Ingresa tu tag de jugador</label>
+    <br />
+    <input
+      type="text"
+      [(ngModel)]="playerTag"
+      name="playerTag"
+      required
+    />
+    <br />
+    <button type="submit" [disabled]="playerForm.invalid || isLoading">
+      Buscar
+    </button>
+  </form>
 
-    <div id="datos-jugador">
-      <div *ngIf="playerData;">
-        <p>{{ playerData.name }}</p>
-      </div>
-    </div>
+  <div id="datos-jugador" *ngIf="playerData">
+    <p>Nombre del jugador: {{ playerData.name }}</p>
+    <p>Clan: {{ playerData.clan?.name || 'Sin clan' }}</p>
+
+    <label for="apiToken">Ingresa tu token API</label>
+    <br />
+    <input
+      type="text"
+      [(ngModel)]="apiToken"
+      name="apiToken"
+      placeholder="Token API"
+    />
+    <br />
+    <button (click)="verifyToken()" [disabled]="!apiToken || isLoading">
+      Verificar Token
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-message">
+    Cargando...
+  </div>
 </div>

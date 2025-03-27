@@ -7,21 +7,17 @@ import { environment } from '../environments/environment';
   providedIn: 'root', // Proveedor global
 })
 export class ClashOfClansService {
-  private readonly apiUrl = '/api/v1/players/';
-
-
-  private readonly headers = new HttpHeaders({
-    Accept: 'application/json',
-    Authorization:
-      'Bearer '+environment.apiKey,
-  });
+  private apiUrl = 'http://localhost:3000/players';  // Asegúrate de que la URL base esté correcta
 
   constructor(private http: HttpClient) {}
 
-  getPlayer(playerTag: string): Observable<any> {
-    const encodedTag = encodeURIComponent(playerTag);
-    // Construye la URL completa
-    const url = `${this.apiUrl}${encodedTag}`;
-    return this.http.get(url, { headers: this.headers });
+  getPlayer(tag: string): Observable<any> {
+    const encodedTag = encodeURIComponent(tag);  // Asegúrate de codificar el tag si tiene caracteres especiales
+    return this.http.get(`${this.apiUrl}/${encodedTag}`);
+  }
+
+  verifyToken(tag: string, token: string): Observable<any> {
+    const encodedTag = encodeURIComponent(tag);  // Codificar el tag aquí también
+    return this.http.post(`${this.apiUrl}/${encodedTag}/verifytoken`, { token });
   }
 }

@@ -1,10 +1,13 @@
 {
-    "/api": {
-      "target": "https://api.clashofclans.com",
-      "secure": true,
-      "changeOrigin": true,
-      "pathRewrite": {
-        "^/api": ""
-      }
-    }
+  "/players": {
+    "target": "http://localhost:3000",
+    "secure": false
   }
+}
+
+
+
+
+
+
+

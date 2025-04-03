@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlayersModule } from './players/players.module'; // Asegúrate de importar el módulo de jugadores
 import { Jugador } from './players/players.entity';
+import { TropasDispService } from './tropas_disp/tropas_disp.service';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { Jugador } from './players/players.entity';
     }),
     PlayersModule,
   ],
+  providers: [TropasDispService],
 })
 export class AppModule {}
 

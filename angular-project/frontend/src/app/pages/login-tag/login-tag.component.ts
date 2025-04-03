@@ -45,31 +45,35 @@ export class LoginTagComponent implements OnInit {
     });
   }
 
+  
   verifyToken(): void {
+    console.log('Token ingresado:', this.apiToken); // Verificar que se captura bien el token
+    
     if (!this.apiToken) {
-      // alert('Por favor ingresa un token válido.');
+      console.error('Error: apiToken está vacío.');
       return;
     }
-
+  
     this.isLoading = true;
-
-    // Aquí se realiza la llamada a tu backend NestJS
+  
     this.clashOfClansService.verifyToken(this.playerTag, this.apiToken).subscribe({
       next: (response) => {
-        console.log('Token verificado:', response);
-      
-        if (response.status === 'ok') {
-          alert('Token verificado correctamente.');
+        console.log('Respuesta del backend:', response); // Verificar qué responde el backend
+  
+        if (response.status && response.status.toLowerCase() === 'success') {
+          alert('Token verificado correctamente. Registrando jugador...');
+  
+          // El registro ya lo maneja el backend, solo redirigir al usuario.
           this.isLoading = false;
   
+          // Guardar datos en sessionStorage y redirigir
+          sessionStorage.setItem('playerData', JSON.stringify(this.playerData));
           // Redirigir al inicio con los datos del jugador
           this.router.navigate(['inicio'], { state: { playerData: this.playerData } });
         } else {
-          alert('El token ingresado no es válido. Por favor verifica e intenta nuevamente.');
+          alert('El token ingresado no es válido.');
           this.isLoading = false;
         }
-        
-        
       },
       error: (err) => {
         console.error('Error al verificar el token:', err);
@@ -78,4 +82,6 @@ export class LoginTagComponent implements OnInit {
       },
     });
   }
+  
+  
 }

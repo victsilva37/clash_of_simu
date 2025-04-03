@@ -1,11 +1,17 @@
 import { Module } from '@nestjs/common';
-import { PlayersController } from './players.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlayersService } from './players.service';
-import { HttpModule } from '@nestjs/axios'; // Importa HttpModule
+import { PlayersController } from './players.controller';
+import { Jugador } from './players.entity';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [HttpModule], // Agrega HttpModule aquí
+  imports: [
+    TypeOrmModule.forFeature([Jugador]),  // 🔥 IMPORTANTE: Registrar la entidad
+    HttpModule,
+  ],
   controllers: [PlayersController],
-  providers: [PlayersService], // Asegúrate de declarar el servicio
+  providers: [PlayersService],
+  exports: [PlayersService],
 })
 export class PlayersModule {}

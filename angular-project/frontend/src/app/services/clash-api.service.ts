@@ -20,4 +20,6 @@ export class ClashOfClansService {
     const encodedTag = encodeURIComponent(tag);  // Codificar el tag aquí también
     return this.http.post(`${this.apiUrl}/${encodedTag}/verifytoken`, { token });
   }
+
+  // Nuevo método para registrar el jugador en la base de dato
 }

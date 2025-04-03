@@ -29,8 +29,10 @@ export class PlayersController {
   @Post(':tag/verifytoken')
   async verifyToken(@Param('tag') tag: string, @Body() body: { token: string }) {
     const apiUrl = `https://api.clashofclans.com/v1/players/${encodeURIComponent(tag)}/verifytoken`;
-
+  
     try {
+      console.log(`🔹 Enviando solicitud a Clash of Clans API: ${apiUrl}, con token: ${body.token}`);
+  
       const response = await lastValueFrom(
         this.httpService.post(apiUrl, body, {
           headers: {
@@ -39,27 +41,45 @@ export class PlayersController {
           },
         }),
       );
-
+  
+      console.log('🔹 Respuesta de la API de Clash of Clans:', response.data);
+  
       if (response.status === 200 && response.data.status === 'ok') {
+        // Verificar si el jugador ya está registrado
+        const existingPlayer = await this.playersService.findPlayerByTag(tag);
+        if (existingPlayer) {
+          console.log(`✅ Jugador ${tag} ya registrado en la base de datos.`);
+          return {
+            status: 'success',  // Asegurarnos de que el frontend recibe esto
+            message: 'Jugador ya registrado.',
+            data: existingPlayer,
+          };
+        }
+  
+        // Si no existe, lo guarda en la base de datos
         const playerData = await this.playersService.getPlayerData(tag);
-        await this.playersService.savePlayerData(playerData);  // Guardar en la base de datos
-
+        await this.playersService.savePlayerData(playerData);
+  
+        console.log(`✅ Token verificado y jugador ${tag} guardado en la base de datos.`);
         return {
-          status: 'success',
+          status: 'success',  // Asegurarnos de que el frontend recibe esto
           message: 'Token verificado y datos guardados correctamente',
           data: playerData,
         };
       } else {
+        console.warn('⚠ Token inválido, respuesta:', response.data);
         throw new HttpException('Token no válido', HttpStatus.UNAUTHORIZED);
       }
     } catch (error) {
-      console.error('Error en verifyToken:', error);
+      console.error('❌ Error en verifyToken:', error.response?.data || error.message);
       throw new HttpException(
         error.response?.data || 'Error al verificar el token',
         error.response?.status || HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
   }
+  
+
 
   
 }

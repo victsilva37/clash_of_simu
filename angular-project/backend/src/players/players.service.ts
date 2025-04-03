@@ -50,4 +50,10 @@ export class PlayersService {
       throw error;
     }
   }
+
+  // ✅ Método para buscar un jugador por su tag
+  async findPlayerByTag(tag: string): Promise<Jugador | null> {
+    return this.jugadorRepository.findOne({ where: { tag } });
+  }
+
 }

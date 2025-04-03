@@ -60,7 +60,7 @@ export class LoginTagComponent implements OnInit {
       next: (response) => {
         console.log('Respuesta del backend:', response); // Verificar qué responde el backend
   
-        if (response.status && response.status.toLowerCase() === 'success') {
+        if (response.status && response.status.toLowerCase() === 'success'){
           alert('Token verificado correctamente. Registrando jugador...');
   
           // El registro ya lo maneja el backend, solo redirigir al usuario.

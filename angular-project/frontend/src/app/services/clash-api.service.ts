@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 })
 export class ClashOfClansService {
   private apiUrl = 'http://localhost:3000/players';  // Asegúrate de que la URL base esté correcta
+  private apiUrl2 = 'http://localhost:3000/tropas'
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +22,9 @@ export class ClashOfClansService {
     return this.http.post(`${this.apiUrl}/${encodedTag}/verifytoken`, { token });
   }
 
-  // Nuevo método para registrar el jugador en la base de dato
+  registrarTropas(tag: string): Observable<any> {
+    const encodedTag = encodeURIComponent(tag);  // Asegurar codificación del tag
+    return this.http.post(`${this.apiUrl2}/${encodedTag}`, {});
+  }
+  
 }

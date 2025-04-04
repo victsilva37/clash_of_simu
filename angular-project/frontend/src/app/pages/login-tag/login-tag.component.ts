@@ -61,15 +61,22 @@ export class LoginTagComponent implements OnInit {
         console.log('Respuesta del backend:', response); // Verificar qué responde el backend
   
         if (response.status && response.status.toLowerCase() === 'success'){
-          alert('Token verificado correctamente. Registrando jugador...');
-  
-          // El registro ya lo maneja el backend, solo redirigir al usuario.
-          this.isLoading = false;
-  
-          // Guardar datos en sessionStorage y redirigir
-          sessionStorage.setItem('playerData', JSON.stringify(this.playerData));
-          // Redirigir al inicio con los datos del jugador
-          this.router.navigate(['inicio'], { state: { playerData: this.playerData } });
+          // Ahora registramos las tropas del jugador en el backend
+          this.clashOfClansService.registrarTropas(this.playerTag).subscribe({
+            next: (tropaResponse) => {
+              console.log('Tropas registradas correctamente:', tropaResponse);
+              alert('Tropas registradas correctamente en la base de datos.');
+
+              // Guardar los datos en sessionStorage y redirigir
+              sessionStorage.setItem('playerData', JSON.stringify(this.playerData));
+              this.router.navigate(['inicio'], { state: { playerData: this.playerData } });
+            },
+            error: (error) => {
+              console.error('Error al registrar las tropas:', error);
+              alert('Hubo un error al registrar las tropas.');
+              this.isLoading = false;
+            }
+        });
         } else {
           alert('El token ingresado no es válido.');
           this.isLoading = false;
@@ -82,6 +89,5 @@ export class LoginTagComponent implements OnInit {
       },
     });
   }
-  
   
 }

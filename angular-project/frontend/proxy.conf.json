@@ -2,8 +2,16 @@
   "/players": {
     "target": "http://localhost:3000",
     "secure": false
+  },
+
+  "/tropas": {
+    "target": "http://localhost:3000",
+    "secure": false
   }
+  
 }
+
+
 
 
 

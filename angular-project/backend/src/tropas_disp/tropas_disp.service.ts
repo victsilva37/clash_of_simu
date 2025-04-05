@@ -56,7 +56,6 @@ export class TropaDispService {
     }
   }
 
-  // ✅ Guardar las tropas en la base de datos con los espacios correctos
   // ✅ Guardar las tropas en la base de datos sin duplicados
 async saveTroopsData(playerTag: string): Promise<void> {
   try {

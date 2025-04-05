@@ -58,3 +58,4 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 #Proyecto backend
 /src/environments/enviroment.ts
 /src/tropas_disp/troops_spaces.json
+/src/hechizos_disp/spells_spaces.json

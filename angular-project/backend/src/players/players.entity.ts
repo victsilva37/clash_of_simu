@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { TropaDisp } from 'src/tropas_disp/tropas_disp.entity';
+import { HechizosDisp } from 'src/hechizos_disp/hechizos_disp.entity';
 
 @Entity('JUGADOR')
 export class Jugador {
@@ -26,5 +27,8 @@ export class Jugador {
 
   @OneToMany(() => TropaDisp, (troop) => troop.jugador) // Relación inversa con Troop
   troops: TropaDisp[];
+  
+  @OneToMany(() => HechizosDisp, (spell) => spell.jugador)
+  spells: HechizosDisp[];
    
 }

@@ -65,18 +65,33 @@ export class LoginTagComponent implements OnInit {
           this.clashOfClansService.registrarTropas(this.playerTag).subscribe({
             next: (tropaResponse) => {
               console.log('Tropas registradas correctamente:', tropaResponse);
-              alert('Tropas registradas correctamente en la base de datos.');
-
-              // Guardar los datos en sessionStorage y redirigir
-              sessionStorage.setItem('playerData', JSON.stringify(this.playerData));
-              this.router.navigate(['inicio'], { state: { playerData: this.playerData } });
             },
+
             error: (error) => {
               console.error('Error al registrar las tropas:', error);
               alert('Hubo un error al registrar las tropas.');
               this.isLoading = false;
             }
-        });
+          });
+
+          // Ahora registramos las tropas del jugador en el backend
+          this.clashOfClansService.registrarHechizos(this.playerTag).subscribe({
+            next: (hechizoResponse) => {
+              console.log('Hechizos registradas correctamente:', hechizoResponse);
+            },
+            error: (error) => {
+              console.error('Error al registrar los hechizos:', error);
+              alert('Hubo un error al registrar los hechizos.');
+              this.isLoading = false;
+            }
+          });
+
+          // Guardar los datos en sessionStorage y redirigir
+          sessionStorage.setItem('playerData', JSON.stringify(this.playerData));
+          this.router.navigate(['inicio'], { state: { playerData: this.playerData } });
+
+          alert("Tropas y hechizos registrados correctamente")
+          
         } else {
           alert('El token ingresado no es válido.');
           this.isLoading = false;

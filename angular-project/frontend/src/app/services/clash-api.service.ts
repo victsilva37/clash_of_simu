@@ -10,6 +10,7 @@ export class ClashOfClansService {
   private apiUrl = 'http://localhost:3000/players';  // Asegúrate de que la URL base esté correcta
   private apiUrl2 = 'http://localhost:3000/tropas';
   private apiUrl3 = 'http://localhost:3000/hechizos';
+  private apiUrl4 = 'http://localhost:3000/heroes';
 
   constructor(private http: HttpClient) {}
 
@@ -31,6 +32,11 @@ export class ClashOfClansService {
   registrarHechizos(tag: string): Observable<any> {
     const encodedTag = encodeURIComponent(tag);  // Asegurar codificación del tag
     return this.http.post(`${this.apiUrl3}/${encodedTag}`, {});
+  }
+
+  registrarHeroes(tag: string): Observable<any> {
+    const encodedTag = encodeURIComponent(tag);  // Asegurar codificación del tag
+    return this.http.post(`${this.apiUrl4}/${encodedTag}`, {});
   }
   
 }

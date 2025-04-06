@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { TropaDisp } from 'src/tropas_disp/tropas_disp.entity';
 import { HechizosDisp } from 'src/hechizos_disp/hechizos_disp.entity';
+import { HeroesDisp } from 'src/heroes_disp/heroes_disp.entity';
 
 @Entity('JUGADOR')
 export class Jugador {
@@ -30,5 +31,8 @@ export class Jugador {
   
   @OneToMany(() => HechizosDisp, (spell) => spell.jugador)
   spells: HechizosDisp[];
+
+  @OneToMany(() => HeroesDisp, (heroe) => heroe.jugador)
+  heroes: HeroesDisp[];
    
 }

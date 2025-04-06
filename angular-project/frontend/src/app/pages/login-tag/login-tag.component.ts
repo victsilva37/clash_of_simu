@@ -86,11 +86,23 @@ export class LoginTagComponent implements OnInit {
             }
           });
 
+          // Ahora registramos las tropas del jugador en el backend
+          this.clashOfClansService.registrarHeroes(this.playerTag).subscribe({
+            next: (heroeResponse) => {
+              console.log('Heroes registradas correctamente:', heroeResponse);
+            },
+            error: (error) => {
+              console.error('Error al registrar los heroes:', error);
+              alert('Hubo un error al registrar los heroes.');
+              this.isLoading = false;
+            }
+          });
+
           // Guardar los datos en sessionStorage y redirigir
           sessionStorage.setItem('playerData', JSON.stringify(this.playerData));
           this.router.navigate(['inicio'], { state: { playerData: this.playerData } });
 
-          alert("Tropas y hechizos registrados correctamente")
+          alert("Tropas, hechizos y heroes registrados correctamente")
           
         } else {
           alert('El token ingresado no es válido.');

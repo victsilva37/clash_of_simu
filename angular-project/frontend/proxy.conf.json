@@ -17,6 +17,16 @@
   "/heroes": {
     "target": "http://localhost:3000",
     "secure": false
+  },
+
+  "/ejercito": {
+    "target": "http://localhost:3000",
+    "secure": false
+  },
+
+  "/train_tropa": {
+    "target": "http://localhost:3000",
+    "secure": false
   }
   
 }

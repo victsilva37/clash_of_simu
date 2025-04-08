@@ -11,6 +11,8 @@ export class ClashOfClansService {
   private apiUrl2 = 'http://localhost:3000/tropas';
   private apiUrl3 = 'http://localhost:3000/hechizos';
   private apiUrl4 = 'http://localhost:3000/heroes';
+  private apiUrl5 = 'http://localhost:3000/ejercito';
+  private apiUrl6 = 'http://localhost:3000/train_tropa'
 
   constructor(private http: HttpClient) {}
 
@@ -38,5 +40,26 @@ export class ClashOfClansService {
     const encodedTag = encodeURIComponent(tag);  // Asegurar codificación del tag
     return this.http.post(`${this.apiUrl4}/${encodedTag}`, {});
   }
+  
+  registrarEjercito(fecha: string): Observable<any> {
+    const body = { fecha_ejercito: fecha };
+    return this.http.post<any>(this.apiUrl5, body);
+  }
+
+    // Función para registrar múltiples TrainTropa
+  registrarTrainTropas(tropas: { cantidadTropa: number; idEjercito: number; idTropaDisp: number }[]): Observable<any> {
+    // Mapeamos las tropas para coincidir con el esquema esperado por el backend
+    const body = tropas.map((tropa) => ({
+      cant_tropa: tropa.cantidadTropa,
+      id_ejercito: tropa.idEjercito,
+      id_tropa_disp: tropa.idTropaDisp,
+    }));
+
+    // Realizamos una solicitud POST al backend
+    return this.http.post<any>(this.apiUrl6, body);
+  }
+
+
+  
   
 }

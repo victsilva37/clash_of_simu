@@ -5,6 +5,7 @@
       { "name": "Giant", "space": 5 },
       { "name": "Goblin", "space": 1 },
       { "name": "Wall Breaker", "space": 2 },
+      { "name": "Bowler", "space": 6},
       { "name": "Balloon", "space": 5 },
       { "name": "Wizard", "space": 4 },
       { "name": "Healer", "space": 14 },

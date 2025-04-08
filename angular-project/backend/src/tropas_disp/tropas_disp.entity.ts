@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn, OneToOne, OneToMany } from 'typeorm';
 import { Jugador } from 'src/players/players.entity';
+import { TrainTropa } from 'src/train_tropa/train_tropa.entity';
 
 @Entity('TROPA_DISP') // Manteniendo el esquema original
 export class TropaDisp {
@@ -18,4 +19,8 @@ export class TropaDisp {
   @ManyToOne(() => Jugador, (jugador) => jugador.troops, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'JUGADOR_ID_JUGADOR' }) 
   jugador: Jugador;
+
+
+  @OneToMany(() => TrainTropa, (train_troop) => train_troop.troop)
+  train_troop: TrainTropa[];
 }

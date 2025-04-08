@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuComponent } from "../../components/menu/menu.component";
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { ClashOfClansService } from '../../services/clash-api.service';
 import { TroopSpaceService } from '../../../assets/extras/troop-info/troops-spaces.service';
 import { TroopSpaceData } from '../../interfaces/troops-spaces';
@@ -191,6 +191,7 @@ export class SimulacionesComponent implements OnInit {
   btnElegirHeroes: boolean = false; // Estado del botón para héroes
   heroesElegidos: boolean = false
 
+
   mostrarInfoHeroes(): void {
     this.filteredHeroes = this.playerData.heroes
       .filter((hero: any) => hero.village === 'home')
@@ -219,12 +220,12 @@ export class SimulacionesComponent implements OnInit {
   porcentajeDano: number = 0;
 
   simular(): void {
-    if (this.tropasEntrenadas || this.hechizosElaborados || this.heroesElegidos){
+    if (this.tropasEntrenadas || this.hechizosElaborados || this.heroesElegidos) {
       this.porcentajeDano = Math.floor(Math.random() * 101);
-
+  
       // Ajustar la probabilidad de estrellas según el porcentaje de daño
       const probabilidad = Math.random(); // Valor entre 0 y 1
-
+  
       if (this.porcentajeDano === 100) {
         this.estrellas = 3; // Siempre 3 estrellas con 100% de daño
       } else if (this.porcentajeDano >= 50) {
@@ -236,15 +237,49 @@ export class SimulacionesComponent implements OnInit {
       } else {
         this.estrellas = 0; // Sin daño
       }
-
+  
+      // Obtener la fecha actual en formato ISO
+      const fechaEjercito = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en-US');
+  
+      // Registrar el ejército si las tropas, hechizos y héroes están entrenados
+      if (this.tropasEntrenadas && this.hechizosElaborados && this.heroesElegidos) {
+        // Llamar al servicio para registrar el ejército
+        this.clashOfClansService.registrarEjercito(fechaEjercito).subscribe(
+          (response) => {
+            console.log('Ejército registrado con éxito:', response);
+            const idEjercito = response.id_ejercito; // Obtenemos el ID del ejército registrado
+  
+            // Construir array de tropas a registrar
+            const tropasARegistrar = this.troopsToShow.map(tropa => ({
+              cantidadTropa: tropa.quantity,
+              idEjercito: idEjercito,
+              idTropaDisp: tropa.idTropa
+            }));
+  
+            // Registrar todas las tropas en una sola solicitud
+            this.clashOfClansService.registrarTrainTropas(tropasARegistrar).subscribe(
+              (responseTropas) => {
+                console.log('Tropas registradas con éxito:', responseTropas);
+              },
+              (error) => {
+                console.error('Error al registrar tropas:', error);
+              }
+            );
+          },
+          (error) => {
+            console.error('Error al registrar ejército:', error);
+          }
+        );
+      }
+  
       // Mostrar modal
       this.abrirModal();
     } else {
-      alert("Entrena alguna weá")
+      alert("Entrena alguna weá");
     }
-    
-    
   }
+  
+
 
   abrirModal(): void {
     const modal = document.getElementById('resultadoModal');
